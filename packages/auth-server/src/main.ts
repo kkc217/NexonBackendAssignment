@@ -5,7 +5,7 @@ import * as process from 'node:process';
 
 import { AppModule } from './app.module';
 import { ErrorResponseFilter } from './common/filters/error-response.filter';
-import { SuccessResponseInterceptor } from './interceptors/success-response.interceptor';
+import { SuccessResponseInterceptor } from './common/interceptors/success-response.interceptor';
 
 async function bootstrap() {
   const httpPort = parseInt(process.env.HTTP_PORT || '4001');

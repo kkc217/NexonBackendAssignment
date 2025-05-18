@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable, map } from 'rxjs';
 
-import { successWrapper } from '../common/wrappers/response.wrapper';
+import { successWrapper } from '../wrappers/response.wrapper';
 
 @Injectable()
 export class SuccessResponseInterceptor implements NestInterceptor {
