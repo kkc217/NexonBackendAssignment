@@ -1,0 +1,17 @@
+# IDEA
+.idea
+
+keys
+packages/**/keys
+
+.env
+packages/**/.env
+
+node_modules
+packages/**/node_modules
+
+dist
+packages/**/dist
+
+scripts
+packages/**/scripts
