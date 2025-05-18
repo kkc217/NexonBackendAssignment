@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo-data:/data/db
+
+  gateway-server:
+    build: packages/gateway-server
+    container_name: gateway-server
+    ports:
+      - '3000:3000'
+    depends_on:
+      - auth-server
+      - mongodb
+    env_file:
+      - ./packages/gateway-server/.env
+    environment:
+      - PORT=3000
+      - MONGODB_HOST=mongodb://mongodb:27017/mydb
+
+  auth-server:
+    build: ./packages/auth-server
+    container_name: auth-server
+    ports:
+      - '3001:3001'
+    depends_on:
+      - mongodb
+    environment:
+      - AUTH_SERVICE_URL=http://auth-server:3001
+      - MONGODB_HOST=mongodb://mongodb:27017/auth
+
+volumes:
+  mongo-data:
