@@ -32,5 +32,15 @@ services:
     environment:
       - MONGODB_HOST=mongodb://mongodb:27017/auth
 
+  event-server:
+    build: ./packages/event-server
+    container_name: event-server
+    ports:
+      - '3002:3002'
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_HOST=mongodb://mongodb:27017/event
+
 volumes:
   mongo-data:
