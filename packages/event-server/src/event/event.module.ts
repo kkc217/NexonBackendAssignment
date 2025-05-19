@@ -6,9 +6,12 @@ import { EventRepository } from './event.repository';
 import { EventService } from './event.service';
 import { Event, EventSchema } from './schema/event.schema';
 
+import { RewardModule } from '../reward/reward.module';
+
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Event.name, schema: EventSchema }]),
+    RewardModule,
   ],
   controllers: [EventController],
   providers: [EventRepository, EventService],

@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 
 import { CreateRewardRequestDto } from './dto/request/create-reward-request.dto';
@@ -60,12 +64,18 @@ export class RewardService {
       types,
     });
 
-    console.log(rewards[0].id);
-    console.log(typeof rewards[0].id);
     return {
       rewards: plainToInstance(RewardDto, rewards, {
         excludeExtraneousValues: true,
       }),
     };
+  }
+
+  async validateRewardExists(id: string): Promise<void> {
+    const reward = await this.rewardRepository.findById(id);
+
+    if (!reward) {
+      throw new NotFoundException('Reward not found.');
+    }
   }
 }

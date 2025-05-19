@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, isValidObjectId } from 'mongoose';
 
 import { RewardType } from './enums/reward-type.enum';
 import { Reward } from './schema/reward.schema';
@@ -20,6 +20,12 @@ export class RewardRepository {
     meta: Record<string, any>;
   }): Promise<Reward> {
     return this.rewardModel.create(params);
+  }
+
+  async findById(id: string): Promise<Reward | null> {
+    if (!isValidObjectId(id)) return null;
+
+    return this.rewardModel.findById(id).exec();
   }
 
   async find(params: {

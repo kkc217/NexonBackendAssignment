@@ -12,5 +12,6 @@ import { Reward, RewardSchema } from './schema/reward.schema';
   ],
   controllers: [RewardController],
   providers: [RewardRepository, RewardService],
+  exports: [RewardService],
 })
 export class RewardModule {}
