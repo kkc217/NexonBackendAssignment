@@ -4,3 +4,4 @@ export enum Role {
   AUDITOR = 'auditor',
   ADMIN = 'admin',
 }
+export const { USER, OPERATOR, AUDITOR, ADMIN } = Role;
