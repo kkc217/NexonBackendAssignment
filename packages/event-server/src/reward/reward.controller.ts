@@ -9,7 +9,9 @@ export class RewardController {
   constructor(private readonly rewardService: RewardService) {}
 
   @MessagePattern({ cmd: 'event_reward_create' })
-  async createReward(requestDto: CreateRewardRequestDto) {
+  async createReward(
+    requestDto: CreateRewardRequestDto,
+  ): Promise<string | null> {
     return this.rewardService.createReward(requestDto);
   }
 }
