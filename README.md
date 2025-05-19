@@ -4,7 +4,7 @@
 ```
 docker-compose up
 ```
-
+localhost:3000 로 실행됩니다.
 
 ## 서버 구조
 1. Gateway 서버
@@ -56,3 +56,7 @@ docker-compose up
         ┣ 📄 Dockerfile       # 게이트웨이 서버 실행 - HTTP 서버
         ┗ ...
 ```
+
+## API 명세
+
+ :books: [노션 링크](https://bald-rambutan-d8c.notion.site/1f8b838dfdde800487b9ed4b5551471e?v=1f8b838dfdde80349330000c65633122&pvs=73)
