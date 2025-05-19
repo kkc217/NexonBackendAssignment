@@ -9,6 +9,11 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         transport: Transport.TCP,
         options: { host: 'auth-server', port: 3001 },
       },
+      {
+        name: 'EVENT_SERVICE',
+        transport: Transport.TCP,
+        options: { host: 'event-server', port: 3002 },
+      },
     ]),
   ],
   exports: [ClientsModule],

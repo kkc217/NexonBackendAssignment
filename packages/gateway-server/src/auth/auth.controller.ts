@@ -10,9 +10,9 @@ import { ClientProxy } from '@nestjs/microservices';
 
 import { JwtAuthGuard } from '../common/auth/auth.guard';
 import { RoleGuard } from '../common/auth/role.guard';
-import { sendAndHandle } from '../common/utils/microservcie-request.util';
 import { Roles } from '../common/decorators/role.decorator';
 import { Role } from '../common/enums/role.enum';
+import { sendAndHandle } from '../common/utils/microservcie-request.util';
 
 @Controller('auth')
 export class AuthController {

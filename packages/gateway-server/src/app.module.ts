@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
 import { validationSchema } from './common/config/validation-schema';
 import { MicroserviceClientModule } from './common/microservice-client.module';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { MicroserviceClientModule } from './common/microservice-client.module';
     }),
     MicroserviceClientModule,
     AuthModule,
+    EventModule,
   ],
   controllers: [AppController],
 })
