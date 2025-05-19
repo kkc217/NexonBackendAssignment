@@ -1,9 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CreateEventRequestDto } from './dto/request/create-event-request.dto';
+import { GetEventsRequestDto } from './dto/request/get-events-request.dto';
 import { EventRepository } from './event.repository';
 
 import { RewardCondition } from '../common/enums/reward-condition.enum';
+import { SortType } from '../common/enums/sort-type.enum';
 
 @Injectable()
 export class EventService {
@@ -41,5 +43,27 @@ export class EventService {
     });
 
     return event?._id?.toString() || null;
+  }
+
+  async getEvents(requestDto: GetEventsRequestDto) {
+    const {
+      page = 1,
+      pageSize = 20,
+      sort = 'createdAt',
+      sortType = SortType.DESC,
+      rewardConditions = [],
+      isActive = 'all',
+      rewardId,
+    } = requestDto;
+
+    return this.eventRepository.find({
+      page,
+      pageSize,
+      sort,
+      sortType,
+      rewardConditions,
+      isActive,
+      rewardId,
+    });
   }
 }
