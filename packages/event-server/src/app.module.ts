@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { validationSchema } from './common/config/validation-schema';
 import { EventModule } from './event/event.module';
 import { RewardModule } from './reward/reward.module';
+import { RewardUserModule } from './reward-user/reward-user.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { RewardModule } from './reward/reward.module';
     }),
     EventModule,
     RewardModule,
+    RewardUserModule,
   ],
   controllers: [AppController],
 })

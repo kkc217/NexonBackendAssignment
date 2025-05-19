@@ -9,6 +9,7 @@ import {
 } from './dto/response/get-events-response.dto';
 import { RewardCondition } from './enums/reward-condition.enum';
 import { EventRepository } from './event.repository';
+import { Event } from './schema/event.schema';
 
 import { SortType } from '../common/enums/sort-type.enum';
 
@@ -78,5 +79,9 @@ export class EventService {
         excludeExtraneousValues: true,
       }),
     };
+  }
+
+  async getEventById(id: string): Promise<Event | null> {
+    return this.eventRepository.findById(id);
   }
 }

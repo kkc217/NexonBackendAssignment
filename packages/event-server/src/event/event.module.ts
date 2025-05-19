@@ -15,5 +15,6 @@ import { RewardModule } from '../reward/reward.module';
   ],
   controllers: [EventController],
   providers: [EventRepository, EventService],
+  exports: [EventService],
 })
 export class EventModule {}

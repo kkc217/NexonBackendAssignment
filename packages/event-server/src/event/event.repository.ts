@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { isValidObjectId, Model } from 'mongoose';
 
 import { RewardCondition } from './enums/reward-condition.enum';
 import { Event } from './schema/event.schema';
@@ -22,6 +22,12 @@ export class EventRepository {
     isActive?: boolean;
   }): Promise<Event> {
     return this.eventModel.create(params);
+  }
+
+  async findById(id: string): Promise<Event | null> {
+    if (!isValidObjectId(id)) return null;
+
+    return this.eventModel.findById(id).exec();
   }
 
   async find(params: {
