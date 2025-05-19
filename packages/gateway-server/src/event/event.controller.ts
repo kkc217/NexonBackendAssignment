@@ -1,16 +1,16 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
 import { sendAndHandle } from '../common/utils/microservcie-request.util';
 
-@Controller('event')
+@Controller('events')
 export class EventController {
   constructor(
     @Inject('EVENT_SERVICE') private readonly eventService: ClientProxy,
   ) {}
 
-  @Get()
-  async test() {
-    return sendAndHandle(this.eventService, { cmd: 'event_test' }, {});
+  @Post()
+  async createEvent(@Body() body: any) {
+    return sendAndHandle(this.eventService, { cmd: 'event_create' }, body);
   }
 }

@@ -1,8 +1,15 @@
 import { Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 
-@Controller('event')
+import { CreateEventRequestDto } from './dto/request/create-event-request.dto';
+import { EventService } from './event.service';
+
+@Controller('events')
 export class EventController {
+  constructor(private readonly eventService: EventService) {}
+
   @MessagePattern({ cmd: 'event_create' })
-  async createEvent() {}
+  async createEvent(requestDto: CreateEventRequestDto): Promise<string | null> {
+    return this.eventService.createEvent(requestDto);
+  }
 }
