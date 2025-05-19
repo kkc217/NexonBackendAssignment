@@ -16,6 +16,9 @@ export class Reward extends Document {
 
   @Prop({ type: Object })
   meta: Record<string, any>;
+
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export const RewardSchema = SchemaFactory.createForClass(Reward);
