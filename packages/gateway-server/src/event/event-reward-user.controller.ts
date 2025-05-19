@@ -3,7 +3,9 @@ import { ClientProxy } from '@nestjs/microservices';
 
 import { JwtAuthGuard } from '../common/auth/auth.guard';
 import { RoleGuard } from '../common/auth/role.guard';
+import { Roles } from '../common/decorators/role.decorator';
 import { CurrentUser } from '../common/decorators/user.decorator';
+import { ADMIN, USER } from '../common/enums/role.enum';
 import { sendAndHandle } from '../common/utils/microservcie-request.util';
 
 @UseGuards(JwtAuthGuard, RoleGuard)
@@ -13,6 +15,7 @@ export class EventRewardUserController {
     @Inject('EVENT_SERVICE') private readonly eventService: ClientProxy,
   ) {}
 
+  @Roles(ADMIN, USER)
   @Post()
   async grantReward(@CurrentUser() user: any, @Body() body: any) {
     const payload = {
