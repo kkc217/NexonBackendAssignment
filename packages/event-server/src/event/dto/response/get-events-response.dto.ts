@@ -8,6 +8,9 @@ export class GetEventsResponseDto {
 
 export class EventDto {
   @Expose()
+  id: string;
+
+  @Expose()
   title: string;
 
   @Expose()
