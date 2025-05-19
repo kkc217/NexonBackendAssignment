@@ -20,7 +20,6 @@ services:
       - event-server
     environment:
       - PORT=3000
-      - MONGODB_HOST=mongodb://mongodb:27017/mydb
 
   auth-server:
     build: ./packages/auth-server
