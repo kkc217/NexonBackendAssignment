@@ -1,7 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { plainToInstance } from 'class-transformer';
 
 import { CreateEventRequestDto } from './dto/request/create-event-request.dto';
 import { GetEventsRequestDto } from './dto/request/get-events-request.dto';
+import {
+  EventDto,
+  GetEventsResponseDto,
+} from './dto/response/get-events-response.dto';
 import { RewardCondition } from './enums/reward-condition.enum';
 import { EventRepository } from './event.repository';
 
@@ -45,7 +50,9 @@ export class EventService {
     return event?._id?.toString() || null;
   }
 
-  async getEvents(requestDto: GetEventsRequestDto) {
+  async getEvents(
+    requestDto: GetEventsRequestDto,
+  ): Promise<GetEventsResponseDto> {
     const {
       page = 1,
       pageSize = 20,
@@ -56,7 +63,7 @@ export class EventService {
       rewardId,
     } = requestDto;
 
-    return this.eventRepository.find({
+    const events = await this.eventRepository.find({
       page,
       pageSize,
       sort,
@@ -65,5 +72,11 @@ export class EventService {
       isActive,
       rewardId,
     });
+
+    return {
+      events: plainToInstance(EventDto, events, {
+        excludeExtraneousValues: true,
+      }),
+    };
   }
 }

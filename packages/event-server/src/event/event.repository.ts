@@ -20,7 +20,7 @@ export class EventRepository {
     rewardId: string;
     rewardCondition?: RewardCondition;
     isActive?: boolean;
-  }) {
+  }): Promise<Event> {
     return this.eventModel.create(params);
   }
 

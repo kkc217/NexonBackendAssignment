@@ -3,6 +3,7 @@ import { MessagePattern } from '@nestjs/microservices';
 
 import { CreateEventRequestDto } from './dto/request/create-event-request.dto';
 import { GetEventsRequestDto } from './dto/request/get-events-request.dto';
+import { GetEventsResponseDto } from './dto/response/get-events-response.dto';
 import { EventService } from './event.service';
 
 @Controller('events')
@@ -15,7 +16,9 @@ export class EventController {
   }
 
   @MessagePattern({ cmd: 'event_get' })
-  async getEvents(requestDto: GetEventsRequestDto) {
+  async getEvents(
+    requestDto: GetEventsRequestDto,
+  ): Promise<GetEventsResponseDto> {
     return this.eventService.getEvents(requestDto);
   }
 }
