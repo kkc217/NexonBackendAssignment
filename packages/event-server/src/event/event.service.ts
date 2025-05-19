@@ -36,7 +36,7 @@ export class EventService {
     const parsedFinishedAt = new Date(finishedAt ?? new Date());
 
     if (parsedStartedAt < now || parsedStartedAt > parsedFinishedAt) {
-      throw new BadRequestException('startedAt or finishedAt if not valid.');
+      throw new BadRequestException('startedAt or finishedAt is not valid.');
     }
 
     const event = await this.eventRepository.create({
