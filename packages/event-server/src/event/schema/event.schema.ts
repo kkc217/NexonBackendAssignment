@@ -1,17 +1,27 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+
 import { RewardCondition } from '../../common/enums/reward-condition.enum';
 
-@Schema()
+@Schema({ timestamps: true })
 export class Event extends Document {
-  // @Prop({ require})
+  @Prop({ default: '' })
   title: string;
-  rewardCondition: RewardCondition;
+
+  @Prop({ required: true, default: () => new Date() })
   startedAt: Date;
+
+  @Prop({ required: true, default: () => new Date() })
   finishedAt: Date;
-  isActive: boolean;
+
+  @Prop({ required: true })
   rewardId: string;
-  createdAt: Date;
-  updatedAt: Date;
+
+  @Prop({ type: String, enum: RewardCondition, required: true })
+  rewardCondition: RewardCondition;
+
+  @Prop({ type: Boolean, required: true, default: true })
+  isActive: boolean;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { validationSchema } from './common/config/validation-schema';
@@ -10,6 +11,12 @@ import { EventModule } from './event/event.module';
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema,
+    }),
+    MongooseModule.forRootAsync({
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.getOrThrow('MONGODB_HOST'),
+      }),
+      inject: [ConfigService],
     }),
     EventModule,
   ],
