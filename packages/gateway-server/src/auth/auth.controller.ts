@@ -22,12 +22,16 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() body: any) {
-    return sendAndHandle(this.authService, { cmd: 'auth_register' }, body);
+    return sendAndHandle(
+      this.authService,
+      { cmd: 'auth_register' },
+      body ?? {},
+    );
   }
 
   @Post('login')
   async login(@Body() body: any) {
-    return sendAndHandle(this.authService, { cmd: 'auth_login' }, body);
+    return sendAndHandle(this.authService, { cmd: 'auth_login' }, body ?? {});
   }
 
   @UseGuards(JwtAuthGuard, RoleGuard)

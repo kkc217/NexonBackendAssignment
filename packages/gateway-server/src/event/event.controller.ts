@@ -11,11 +11,15 @@ export class EventController {
 
   @Post()
   async createEvent(@Body() body: any) {
-    return sendAndHandle(this.eventService, { cmd: 'event_create' }, body);
+    return sendAndHandle(
+      this.eventService,
+      { cmd: 'event_create' },
+      body ?? {},
+    );
   }
 
   @Get()
   async getEvents(@Query() query: any) {
-    return sendAndHandle(this.eventService, { cmd: 'event_get' }, query);
+    return sendAndHandle(this.eventService, { cmd: 'event_get' }, query ?? {});
   }
 }
