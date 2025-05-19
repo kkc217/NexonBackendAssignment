@@ -1,4 +1,4 @@
-import { RewardCondition } from '../../../common/enums/reward-condition.enum';
+import { RewardCondition } from '../../enums/reward-condition.enum';
 
 export class CreateEventRequestDto {
   title?: string;

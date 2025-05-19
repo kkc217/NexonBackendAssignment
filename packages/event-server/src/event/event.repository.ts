@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
+import { RewardCondition } from './enums/reward-condition.enum';
 import { Event } from './schema/event.schema';
 
-import { RewardCondition } from '../common/enums/reward-condition.enum';
 import { SortType } from '../common/enums/sort-type.enum';
 
 @Injectable()

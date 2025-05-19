@@ -2,9 +2,9 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CreateEventRequestDto } from './dto/request/create-event-request.dto';
 import { GetEventsRequestDto } from './dto/request/get-events-request.dto';
+import { RewardCondition } from './enums/reward-condition.enum';
 import { EventRepository } from './event.repository';
 
-import { RewardCondition } from '../common/enums/reward-condition.enum';
 import { SortType } from '../common/enums/sort-type.enum';
 
 @Injectable()

@@ -1,5 +1,5 @@
-import { RewardCondition } from '../../../common/enums/reward-condition.enum';
 import { SortType } from '../../../common/enums/sort-type.enum';
+import { RewardCondition } from '../../enums/reward-condition.enum';
 
 export class GetEventsRequestDto {
   page?: number;

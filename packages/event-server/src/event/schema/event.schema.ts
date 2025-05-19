@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-import { RewardCondition } from '../../common/enums/reward-condition.enum';
+import { RewardCondition } from '../enums/reward-condition.enum';
 
 @Schema({ timestamps: true })
 export class Event extends Document {
